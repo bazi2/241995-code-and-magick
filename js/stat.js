@@ -1,74 +1,56 @@
 'use strict';
 
-//Задаю константы
 var CLOUD_WIDTH = 420;
-var CLOUD_HEIGHT = 270;
-var CLOUD_X = 100;
-var CLOUD_Y = 10;
-var GAP = 10;
-var FONT_GAP = 16;
-var GIST_HEIGHT = 150;
-var COLUMN_WIDTH = 40;
-var COLUMN_GAP = 50;
-var barWidth = COLUMN_WIDTH + COLUMN_GAP;
+var CLOUD_HIEGHT = 270;
 
-//Убираю повторения отрисовки облака задав функцию
-var renderCloud = function(ctx, x, y, color) {
+var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
-  ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
+  ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HIEGHT);
+};
+
+var renderText = function (ctx, text, x, y, color) {
+  ctx.font = '16px PT Mono';
+  ctx.fillStyle = 'black';
+  ctx.fillText(text, x, y);
 };
 
 window.renderStatistics = function (ctx) {
-  //Нарисовала тень
-  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
+  //1. Облако и тень
+  renderCloud(ctx, 110, 20, 'rgba(0, 0, 0, 0.7)');
+  renderCloud(ctx, 100, 10, 'white');
 
-  //Нарисовала облако
-  renderCloud(ctx, CLOUD_X, CLOUD_Y, 'white');
+  //2. Текст приветствия о победе
+  renderText(ctx, 'Ура вы победили!', 150, 40);
+  renderText(ctx, 'Список результатов:', 150, 60);
 
-  //Рисую гистограмму
+  //3. Сама гистограмма
+  //Цвет задала временно, чтобы видеть границы и расположение
+  ctx.fillStyle = 'green';
+  ctx.fillRect(110, 100, 400, 150);
 
-  //Приветственный текст
-  ctx.font = FONT_GAP;
+  //4. Столбики играков
+
+  //Игрок 'Вы'
   ctx.fillStyle = 'black';
-  ctx.fillText('Ура вы победили!', CLOUD_X + GAP, CLOUD_Y + (GAP * 4));
-  ctx.fillText('Список результатов:', CLOUD_X + GAP, CLOUD_Y + (GAP * 6));
-
-  //Сокращаю запись имен через переменные
-  var playerIndex = 0;
-  var playerName = 'Вы';
-
-  var players = ['Вы', 'Кекс', 'Катя', 'Игорь'];
-
-  //Данные игрока: 'Вы'
-  ctx.fillStyle = 'black';
-  ctx.fillText(playerName, CLOUD_X + GAP, CLOUD_HEIGHT);
+  ctx.fillText('Вы', 120, 270);
   ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-  ctx.fillRect(CLOUD_X + (GAP * 1) + (barWidth * playerIndex), CLOUD_Y + (GAP * 8), COLUMN_WIDTH, GIST_HEIGHT);
+  ctx.fillRect(120, 100, 40, 150);
 
-  //Данные игрока: 'Кекс'
-  var playerIndex = 1;
-  var playerName = 'Кекс';
-
+  //Игрок 'Кекс'
   ctx.fillStyle = 'black';
-  ctx.fillText(playerName, CLOUD_X + barWidth, CLOUD_HEIGHT);
+  ctx.fillText('Кекс', 210, 270);
   ctx.fillStyle = 'rgba(0, 0, 255, 1)';
-  ctx.fillRect(CLOUD_X + (GAP * 0) + (barWidth * playerIndex), barWidth, COLUMN_WIDTH, GIST_HEIGHT);
+  ctx.fillRect(210, 100, 40, 150);
 
-  //Данные игрока: 'Катя'
-  var playerIndex = 2;
-  var playerName = 'Катя';
-
+  //Игрок 'Катя'
   ctx.fillStyle = 'black';
-  ctx.fillText(playerName, CLOUD_X + barWidth * 2, CLOUD_HEIGHT);
-  ctx.fillStyle = 'rgba(0, 0, 255, 0.7)';
-  ctx.fillRect(CLOUD_X + (GAP * 0) + (barWidth * playerIndex), barWidth, COLUMN_WIDTH, GIST_HEIGHT);
+  ctx.fillText('Катя', 300, 270);
+  ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+  ctx.fillRect(300, 100, 40, 150);
 
-  //Данные игрока: 'Игорь'
-  var playerIndex = 3;
-  var playerName = 'Игорь';
-
+  //Игрок 'Игорь'
   ctx.fillStyle = 'black';
-  ctx.fillText(playerName, CLOUD_X + (barWidth * 3), CLOUD_HEIGHT);
-  ctx.fillStyle = 'rgba(0, 0, 255, 0.5)';
-  ctx.fillRect(CLOUD_X + (GAP * 0) + (barWidth * playerIndex), barWidth, COLUMN_WIDTH, GIST_HEIGHT);
+  ctx.fillText('Игорь', 390, 270);
+  ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+  ctx.fillRect(390, 100, 40, 150);
 };
