@@ -15,7 +15,7 @@ var renderCloud = function (ctx, x, y, color) {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HIEGHT);
 };
 
-var renderText = function (ctx, text, x, y, color) {
+var renderText = function (ctx, text, x, y) {
   ctx.font = '16px PT Mono';
   ctx.fillStyle = 'black';
   ctx.fillText(text, x, y);
