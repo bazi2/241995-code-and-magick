@@ -21,7 +21,6 @@ var renderText = function (ctx, text, x, y, color) {
   ctx.fillText(text, x, y);
 };
 
-//Расчет максимального времени
 var getMaxElement = function (arr) {
   var maxElement = arr[0];
 
@@ -45,7 +44,11 @@ window.renderStatistics = function (ctx, names, times) {
   for (var i = 0; i < names.length; i++) {
     ctx.fillStyle = 'black';
     ctx.fillText(names[i], CLOUD_X + COLUMN_GAP + (BAR_WIDTH * i), CLOUD_HIEGHT);
-    ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    if (names[i] === 'Вы') {
+      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    } else {
+      ctx.fillStyle = 'blue';
+    }
     ctx.fillRect(CLOUD_X + COLUMN_GAP + (BAR_WIDTH * i), CLOUD_Y * GAP, COLUMN_WIDTH, (COLUMN_HEIGHT * times[i]) / maxTime);
-  };
+  }
 };
