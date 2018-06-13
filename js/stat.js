@@ -21,29 +21,31 @@ var renderText = function (ctx, text, x, y, color) {
   ctx.fillText(text, x, y);
 };
 
-window.renderStatistics = function (ctx) {
-  //1. Облако и тень
+//Расчет максимального времени
+var getMaxElement = function (arr) {
+  var maxElement = arr[0];
+
+  for (var i = 1; i < arr.length; i++) {
+    if (arr[i] > maxElement) {
+      maxElement = arr[i];
+    }
+  }
+  return maxElement;
+};
+
+window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, 'white');
 
-  //2. Текст приветствия о победе
   renderText(ctx, 'Ура вы победили!', CLOUD_X + COLUMN_GAP, CLOUD_Y + (GAP * 3));
   renderText(ctx, 'Список результатов:', CLOUD_X + COLUMN_GAP, CLOUD_Y + (GAP * 5));
 
-  //3. Сама гистограмма
-  //Цвет задала временно, чтобы видеть границы и расположение
-  ctx.fillStyle = 'green';
-  ctx.fillRect(110, 100, 400, COLUMN_HEIGHT);
+  var maxTime = getMaxElement(times);
 
-  //4. Столбики играков
-
-  ctx.fillStyle = 'black';
-  ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-
-  var players = ['Вы', 'Кекс', 'Катя', 'Игорь'];
-
-  for (var i = 0; i < players.length; i++) {
-    ctx.fillText(players[i], CLOUD_X + COLUMN_GAP + (BAR_WIDTH * i), CLOUD_HIEGHT);
-    ctx.fillRect(CLOUD_X + COLUMN_GAP + (BAR_WIDTH * i), CLOUD_Y * GAP, COLUMN_WIDTH, COLUMN_HEIGHT);
+  for (var i = 0; i < names.length; i++) {
+    ctx.fillStyle = 'black';
+    ctx.fillText(names[i], CLOUD_X + COLUMN_GAP + (BAR_WIDTH * i), CLOUD_HIEGHT);
+    ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    ctx.fillRect(CLOUD_X + COLUMN_GAP + (BAR_WIDTH * i), CLOUD_Y * GAP, COLUMN_WIDTH, (COLUMN_HEIGHT * times[i]) / maxTime);
   };
 };
