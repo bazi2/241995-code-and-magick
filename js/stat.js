@@ -37,41 +37,13 @@ window.renderStatistics = function (ctx) {
 
   //4. Столбики играков
 
-  var playerIndex = 0;
-  var playerName = 'Вы';
+  ctx.fillStyle = 'black';
+  ctx.fillStyle = 'rgba(255, 0, 0, 1)';
 
   var players = ['Вы', 'Кекс', 'Катя', 'Игорь'];
 
-  //Игрок 'Вы - 0'
-  ctx.fillStyle = 'black';
-  ctx.fillText(playerName, CLOUD_X + COLUMN_GAP + (BAR_WIDTH * playerIndex), CLOUD_HIEGHT);
-  ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-  ctx.fillRect(CLOUD_X + COLUMN_GAP + (BAR_WIDTH * playerIndex), CLOUD_Y * GAP, COLUMN_WIDTH, COLUMN_HEIGHT);
-
-  var playerIndex = 1;
-  var playerName = 'Кекс';
-
-  //Игрок 'Кекс - 1'
-  ctx.fillStyle = 'black';
-  ctx.fillText(playerName, CLOUD_X + COLUMN_GAP + (BAR_WIDTH * playerIndex), CLOUD_HIEGHT);
-  ctx.fillStyle = 'rgba(0, 0, 255, 1)';
-  ctx.fillRect(CLOUD_X + COLUMN_GAP + (BAR_WIDTH * playerIndex), CLOUD_Y * GAP, COLUMN_WIDTH, COLUMN_HEIGHT);
-
-  var playerIndex = 2;
-  var playerName = 'Катя';
-
-  //Игрок 'Катя - 2'
-  ctx.fillStyle = 'black';
-  ctx.fillText(playerName, CLOUD_X + COLUMN_GAP + (BAR_WIDTH * playerIndex), CLOUD_HIEGHT);
-  ctx.fillStyle = 'rgba(0, 0, 255, 1)';
-  ctx.fillRect(CLOUD_X + COLUMN_GAP + (BAR_WIDTH * playerIndex), CLOUD_Y * GAP, COLUMN_WIDTH, COLUMN_HEIGHT);
-
-  var playerIndex = 3;
-  var playerName = 'Игорь';
-
-  //Игрок 'Игорь - 3'
-  ctx.fillStyle = 'black';
-  ctx.fillText(playerName, CLOUD_X + COLUMN_GAP + (BAR_WIDTH * playerIndex), CLOUD_HIEGHT);
-  ctx.fillStyle = 'rgba(0, 0, 255, 1)';
-  ctx.fillRect(CLOUD_X + COLUMN_GAP + (BAR_WIDTH * playerIndex), CLOUD_Y * GAP, COLUMN_WIDTH, COLUMN_HEIGHT);
+  for (var i = 0; i < players.length; i++) {
+    ctx.fillText(players[i], CLOUD_X + COLUMN_GAP + (BAR_WIDTH * i), CLOUD_HIEGHT);
+    ctx.fillRect(CLOUD_X + COLUMN_GAP + (BAR_WIDTH * i), CLOUD_Y * GAP, COLUMN_WIDTH, COLUMN_HEIGHT);
+  };
 };
