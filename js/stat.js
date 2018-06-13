@@ -54,6 +54,6 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       ctx.fillStyle = 'rgba(0, 0, 255,' + getRandomColor() + ')';
     }
-    ctx.fillRect(CLOUD_X + COLUMN_GAP + (BAR_WIDTH * i), CLOUD_Y * GAP, COLUMN_WIDTH, (COLUMN_HEIGHT * times[i]) / maxTime);
+    ctx.fillRect(CLOUD_X + COLUMN_GAP + (BAR_WIDTH * i), CLOUD_Y * (GAP * 2.5), COLUMN_WIDTH, -(COLUMN_HEIGHT * times[i]) / maxTime);
   }
 };
